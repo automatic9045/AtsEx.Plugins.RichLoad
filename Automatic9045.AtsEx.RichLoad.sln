@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automatic9045.AtsEx.RichLoad", "Automatic9045.AtsEx.RichLoad\Automatic9045.AtsEx.RichLoad.csproj", "{ED345FD8-7B38-490C-B43C-78B4686B33E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED345FD8-7B38-490C-B43C-78B4686B33E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED345FD8-7B38-490C-B43C-78B4686B33E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED345FD8-7B38-490C-B43C-78B4686B33E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED345FD8-7B38-490C-B43C-78B4686B33E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8534829-A066-4561-BA40-E7FFCA71EFF7}
+	EndGlobalSection
+EndGlobal
