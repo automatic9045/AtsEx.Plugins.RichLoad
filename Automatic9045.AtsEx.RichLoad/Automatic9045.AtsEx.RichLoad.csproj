@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Automatic9045.AtsEx.RichLoad</RootNamespace>
-    <AssemblyName>Automatic9045.AtsEx.RichLoad</AssemblyName>
+    <AssemblyName>RichLoad</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
