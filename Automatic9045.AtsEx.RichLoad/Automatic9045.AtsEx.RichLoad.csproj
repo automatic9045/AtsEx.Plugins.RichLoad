@@ -35,20 +35,20 @@
       <HintPath>..\packages\Lib.Harmony.2.2.2\lib\net48\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="AtsEx.PluginHost, Version=1.0.40101.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AtsEx.PluginHost.1.0.0-rc6\lib\AtsEx.PluginHost.dll</HintPath>
+    <Reference Include="AtsEx.PluginHost, Version=1.0.40209.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AtsEx.PluginHost.1.0.0-rc7\lib\AtsEx.PluginHost.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="BveTypes, Version=1.0.40116.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AtsEx.PluginHost.1.0.0-rc6\lib\BveTypes.dll</HintPath>
+    <Reference Include="BveTypes, Version=1.0.40209.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AtsEx.PluginHost.1.0.0-rc7\lib\BveTypes.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FastCaching, Version=1.0.31118.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AtsEx.PluginHost.1.0.0-rc6\lib\FastCaching.dll</HintPath>
+      <HintPath>..\packages\AtsEx.PluginHost.1.0.0-rc7\lib\FastCaching.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FastMember, Version=1.0.40101.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AtsEx.PluginHost.1.0.0-rc6\lib\FastMember.dll</HintPath>
+      <HintPath>..\packages\AtsEx.PluginHost.1.0.0-rc7\lib\FastMember.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ObjectiveHarmonyPatch, Version=1.0.30529.1, Culture=neutral, processorArchitecture=MSIL">
@@ -70,7 +70,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="TypeWrapping, Version=1.0.31223.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AtsEx.PluginHost.1.0.0-rc6\lib\TypeWrapping.dll</HintPath>
+      <HintPath>..\packages\AtsEx.PluginHost.1.0.0-rc7\lib\TypeWrapping.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnembeddedResources, Version=1.0.30529.1, Culture=neutral, processorArchitecture=MSIL">
