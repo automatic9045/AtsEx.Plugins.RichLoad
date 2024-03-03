@@ -33,6 +33,11 @@ namespace Automatic9045.AtsEx.RichLoad
 
         public ExtensionMain(PluginBuilder builder) : base(builder)
         {
+            if (App.Instance.LaunchMode == LaunchMode.Ats)
+            {
+                throw new BveFileLoadException($"{nameof(RichLoad)} は {App.Instance.ProductShortName} {LaunchMode.Ats.GetTypeString()} では動作しません。", Name);
+            }
+
             ClassMemberSet direct3DProviderMembers = BveHacker.BveTypes.GetClassInfoOf<Direct3DProvider>();
             FastMethod renderMethod = direct3DProviderMembers.GetSourceMethodOf(nameof(Direct3DProvider.Render));
             RenderPatch = HarmonyPatch.Patch(nameof(RichLoad), renderMethod.Source, PatchType.Prefix);
