@@ -44,7 +44,7 @@ namespace Automatic9045.AtsEx.RichLoad
             ImageModel.Dispose();
         }
 
-        public void Render()
+        public void Render(int alpha, Action preprocess = null)
         {
             Direct3DProvider direct3DProvider = Direct3DProvider.Instance;
             Device device = direct3DProvider.Device;
@@ -53,7 +53,7 @@ namespace Automatic9045.AtsEx.RichLoad
 
             device.BeginScene();
             {
-                device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, Color.Black, 1, 0);
+                preprocess?.Invoke();
 
                 device.SetSamplerState(0, SamplerState.AddressU, TextureAddress.Clamp);
                 device.SetSamplerState(0, SamplerState.AddressV, TextureAddress.Clamp);
@@ -69,9 +69,13 @@ namespace Automatic9045.AtsEx.RichLoad
                 device.SetTransform(TransformState.View, Matrix.Identity);
                 device.SetTransform(TransformState.Projection, Matrix.OrthoOffCenterLH(-width / 2, width / 2, -height / 2, height / 2, 0, 1));
 
-                ImageModel.Draw(direct3DProvider, false);
-                ShapeDrawer.FillRectangle(Color.White, 0, height - 10, width * Progress / 101, 10);
+                ShapeDrawer.FillRectangle(Color.FromArgb(alpha, Color.Black), 0, 0, width, height);
 
+                ImageModel.SetAlpha(alpha);
+                ImageModel.Draw(direct3DProvider, false);
+                ImageModel.Draw(direct3DProvider, true);
+
+                ShapeDrawer.FillRectangle(Color.FromArgb(alpha, Color.White), 0, height - 10, width * Progress / 101, 10);
             }
             device.EndScene();
 

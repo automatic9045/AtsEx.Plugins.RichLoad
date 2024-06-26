@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -22,14 +23,17 @@ using Automatic9045.AtsEx.RichLoad.Data;
 
 namespace Automatic9045.AtsEx.RichLoad
 {
-    [PluginType(PluginType.Extension)]
+    [Plugin(PluginType.Extension, "1.0.40401.1")]
     public class ExtensionMain : AssemblyPluginBase, IExtension
     {
         private readonly HarmonyPatch RenderPatch;
         private readonly HarmonyPatch SetProgressPatch;
+        private readonly Stopwatch FadeStopwatch = new Stopwatch();
 
         private RichLoadConfig Config = null;
         private LoadingAnimation LoadingAnimation = null;
+
+        private double FadeProgress;
 
         public ExtensionMain(PluginBuilder builder) : base(builder)
         {
@@ -47,14 +51,34 @@ namespace Automatic9045.AtsEx.RichLoad
 
                 Direct3DProvider direct3DProvider = Direct3DProvider.FromSource(e.Instance);
                 Device device = direct3DProvider.Device;
-
                 MainForm mainForm = MainForm.FromSource(e.Args[0]);
-                if (!(mainForm.CurrentScenario is null)) return PatchInvokationResult.DoNothing(e);
 
                 if (device is null) return PatchInvokationResult.DoNothing(e);
                 if (direct3DProvider.HasDeviceLost) return PatchInvokationResult.DoNothing(e);
 
-                LoadingAnimation.Render();
+                if (mainForm.CurrentScenario is null)
+                {
+                    FadeStopwatch.Reset();
+                    FadeProgress = 1;
+                    LoadingAnimation.Render(255);
+                }
+                else
+                {
+                    if (FadeProgress == 0)
+                    {
+                        FadeStopwatch.Reset();
+                        return PatchInvokationResult.DoNothing(e);
+                    }
+
+                    FadeStopwatch.Start();
+                    FadeProgress = Math.Max(0, 1 - 0.8 * FadeStopwatch.Elapsed.TotalSeconds);
+
+                    LoadingAnimation.Render((int)(255 * FadeProgress), () =>
+                    {
+                        mainForm.CurrentScenario.Draw(direct3DProvider);
+                        mainForm.AssistantDrawer.Draw();
+                    });
+                }
 
                 return new PatchInvokationResult(SkipModes.SkipOriginal);
             };
