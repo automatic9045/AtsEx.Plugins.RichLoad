@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,12 @@ namespace Automatic9045.AtsEx.RichLoad.Data
     public class RichLoadConfig
     {
         private static readonly XmlSerializer Serializer = new XmlSerializer(typeof(RichLoadConfig));
+
+        [XmlAttribute(nameof(BackgroundColor))]
+        public string BackgroundColorString = "Black";
+
+        [XmlIgnore]
+        public Color BackgroundColor => ColorTranslator.FromHtml(BackgroundColorString);
 
         public StaticImage StaticImage = new StaticImage();
 

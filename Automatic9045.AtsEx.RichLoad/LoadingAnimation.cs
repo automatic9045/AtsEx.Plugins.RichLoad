@@ -17,6 +17,8 @@ namespace Automatic9045.AtsEx.RichLoad
 {
     internal class LoadingAnimation : IDisposable
     {
+        private readonly Color BackgroundColor;
+
         private readonly Model ImageModel;
         private readonly SizeF ImageSize;
 
@@ -24,19 +26,21 @@ namespace Automatic9045.AtsEx.RichLoad
 
         public float Progress { get; set; } = 0;
 
-        private LoadingAnimation(Model imageModel, SizeF imageSize)
+        private LoadingAnimation(Color backgroundColor, Model imageModel, SizeF imageSize)
         {
+            BackgroundColor = backgroundColor;
+
             ImageModel = imageModel;
             ImageSize = imageSize;
 
             ShapeDrawer = new ShapeDrawer(Direct3DProvider.Instance.Device);
         }
 
-        public static LoadingAnimation Create(string texturePath, SizeF size)
+        public static LoadingAnimation Create(Color backgroundColor, string texturePath, SizeF size)
         {
             RectangleF rectangle = new RectangleF(-size.Width / 2, size.Height / 2, size.Width, -size.Height);
             Model imageModel = Model.CreateRectangleWithTexture(rectangle, 0, 0, texturePath);
-            return new LoadingAnimation(imageModel, size);
+            return new LoadingAnimation(backgroundColor, imageModel, size);
         }
 
         public void Dispose()
@@ -69,7 +73,7 @@ namespace Automatic9045.AtsEx.RichLoad
                 device.SetTransform(TransformState.View, Matrix.Identity);
                 device.SetTransform(TransformState.Projection, Matrix.OrthoOffCenterLH(-width / 2, width / 2, -height / 2, height / 2, 0, 1));
 
-                ShapeDrawer.FillRectangle(Color.FromArgb(alpha, Color.Black), 0, 0, width, height);
+                ShapeDrawer.FillRectangle(Color.FromArgb(alpha, BackgroundColor), 0, 0, width, height);
 
                 ImageModel.SetAlpha(alpha);
                 ImageModel.Draw(direct3DProvider, false);
