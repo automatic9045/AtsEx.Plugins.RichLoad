@@ -19,6 +19,12 @@ namespace Automatic9045.AtsEx.RichLoad.Data
         [XmlIgnore]
         public Color BackgroundColor => ColorTranslator.FromHtml(BackgroundColorString);
 
+        [XmlAttribute(nameof(ProgressBarColor))]
+        public string ProgressBarColorString = "White";
+
+        [XmlIgnore]
+        public Color ProgressBarColor => ColorTranslator.FromHtml(ProgressBarColorString);
+
         public StaticImage StaticImage = new StaticImage();
 
         public static RichLoadConfig Deserialize(string filePath, bool throwExceptionIfNotExists)

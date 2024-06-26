@@ -18,6 +18,7 @@ namespace Automatic9045.AtsEx.RichLoad
     internal class LoadingAnimation : IDisposable
     {
         private readonly Color BackgroundColor;
+        private readonly Color ProgressBarColor;
 
         private readonly Model ImageModel;
         private readonly SizeF ImageSize;
@@ -26,9 +27,10 @@ namespace Automatic9045.AtsEx.RichLoad
 
         public float Progress { get; set; } = 0;
 
-        private LoadingAnimation(Color backgroundColor, Model imageModel, SizeF imageSize)
+        private LoadingAnimation(Color backgroundColor, Color progressBarColor, Model imageModel, SizeF imageSize)
         {
             BackgroundColor = backgroundColor;
+            ProgressBarColor = progressBarColor;
 
             ImageModel = imageModel;
             ImageSize = imageSize;
@@ -36,11 +38,11 @@ namespace Automatic9045.AtsEx.RichLoad
             ShapeDrawer = new ShapeDrawer(Direct3DProvider.Instance.Device);
         }
 
-        public static LoadingAnimation Create(Color backgroundColor, string texturePath, SizeF size)
+        public static LoadingAnimation Create(Color backgroundColor, Color progressBarColor, string texturePath, SizeF size)
         {
             RectangleF rectangle = new RectangleF(-size.Width / 2, size.Height / 2, size.Width, -size.Height);
             Model imageModel = Model.CreateRectangleWithTexture(rectangle, 0, 0, texturePath);
-            return new LoadingAnimation(backgroundColor, imageModel, size);
+            return new LoadingAnimation(backgroundColor, progressBarColor, imageModel, size);
         }
 
         public void Dispose()
@@ -79,7 +81,7 @@ namespace Automatic9045.AtsEx.RichLoad
                 ImageModel.Draw(direct3DProvider, false);
                 ImageModel.Draw(direct3DProvider, true);
 
-                ShapeDrawer.FillRectangle(Color.FromArgb(alpha, Color.White), 0, height - 10, width * Progress / 101, 10);
+                ShapeDrawer.FillRectangle(Color.FromArgb(alpha, ProgressBarColor), 0, height - 10, width * Progress / 101, 10);
             }
             device.EndScene();
 

@@ -128,7 +128,7 @@ namespace Automatic9045.AtsEx.RichLoad
             Config = RichLoadConfig.Deserialize(configPath, true);
 
             string texturePath = Path.Combine(configDirectory, Config.StaticImage.Path);
-            LoadingAnimation = LoadingAnimation.Create(Config.BackgroundColor, texturePath, new SizeF(Config.StaticImage.Width, Config.StaticImage.Height));
+            LoadingAnimation = LoadingAnimation.Create(Config.BackgroundColor, Config.ProgressBarColor, texturePath, new SizeF(Config.StaticImage.Width, Config.StaticImage.Height));
 
             BveHacker.MainFormSource.Invalidate();
         }
