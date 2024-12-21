@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using SlimDX;
 using SlimDX.Direct3D9;
 
-using Automatic9045.AtsEx.DXRendering.Vertices;
+using Automatic9045.BveEx.DXRendering.Vertices;
 
-namespace Automatic9045.AtsEx.DXRendering
+namespace Automatic9045.BveEx.DXRendering
 {
     internal class ShapeDrawer
     {

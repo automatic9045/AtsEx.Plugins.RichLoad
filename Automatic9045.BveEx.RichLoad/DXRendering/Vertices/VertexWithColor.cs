@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using SlimDX;
 
-namespace Automatic9045.AtsEx.DXRendering.Vertices
+namespace Automatic9045.BveEx.DXRendering.Vertices
 {
     internal struct VertexWithColor
     {

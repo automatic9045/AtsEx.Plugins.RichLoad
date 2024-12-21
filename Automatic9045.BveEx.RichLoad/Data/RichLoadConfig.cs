@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Automatic9045.AtsEx.RichLoad.Data
+namespace Automatic9045.BveEx.RichLoad.Data
 {
     public class RichLoadConfig
     {

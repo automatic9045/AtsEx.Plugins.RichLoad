@@ -15,15 +15,15 @@ using FastMember;
 using ObjectiveHarmonyPatch;
 using TypeWrapping;
 
-using AtsEx.PluginHost;
-using AtsEx.PluginHost.Plugins;
-using AtsEx.PluginHost.Plugins.Extensions;
+using BveEx.PluginHost;
+using BveEx.PluginHost.Plugins;
+using BveEx.PluginHost.Plugins.Extensions;
 
-using Automatic9045.AtsEx.RichLoad.Data;
+using Automatic9045.BveEx.RichLoad.Data;
 
-namespace Automatic9045.AtsEx.RichLoad
+namespace Automatic9045.BveEx.RichLoad
 {
-    [Plugin(PluginType.Extension, "1.0.40401.1")]
+    [Plugin(PluginType.Extension, "2.0.41222.1")]
     public class ExtensionMain : AssemblyPluginBase, IExtension
     {
         private readonly HarmonyPatch RenderPatch;
@@ -37,11 +37,6 @@ namespace Automatic9045.AtsEx.RichLoad
 
         public ExtensionMain(PluginBuilder builder) : base(builder)
         {
-            if (App.Instance.LaunchMode == LaunchMode.Ats)
-            {
-                throw new BveFileLoadException($"{nameof(RichLoad)} は {App.Instance.ProductShortName} {LaunchMode.Ats.GetTypeString()} では動作しません。", Name);
-            }
-
             ClassMemberSet direct3DProviderMembers = BveHacker.BveTypes.GetClassInfoOf<Direct3DProvider>();
             FastMethod renderMethod = direct3DProviderMembers.GetSourceMethodOf(nameof(Direct3DProvider.Render));
             RenderPatch = HarmonyPatch.Patch(nameof(RichLoad), renderMethod.Source, PatchType.Prefix);
@@ -76,7 +71,7 @@ namespace Automatic9045.AtsEx.RichLoad
                     LoadingAnimation.Render((int)(255 * FadeProgress), () =>
                     {
                         mainForm.CurrentScenario.Draw(direct3DProvider);
-                        mainForm.AssistantDrawer.Draw();
+                        mainForm.Assistants.Draw();
                     });
                 }
 
@@ -148,9 +143,8 @@ namespace Automatic9045.AtsEx.RichLoad
             BveHacker.LoadingProgressFormSource.Hide();
         }
 
-        public override TickResult Tick(TimeSpan elapsed)
+        public override void Tick(TimeSpan elapsed)
         {
-            return new ExtensionTickResult();
         }
     }
 }

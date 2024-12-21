@@ -11,9 +11,9 @@ using SlimDX.Direct3D9;
 
 using BveTypes.ClassWrappers;
 
-using Automatic9045.AtsEx.DXRendering;
+using Automatic9045.BveEx.DXRendering;
 
-namespace Automatic9045.AtsEx.RichLoad
+namespace Automatic9045.BveEx.RichLoad
 {
     internal class LoadingAnimation : IDisposable
     {
